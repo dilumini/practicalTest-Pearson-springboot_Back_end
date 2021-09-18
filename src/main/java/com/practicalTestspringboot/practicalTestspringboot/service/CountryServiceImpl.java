@@ -6,8 +6,11 @@ import com.practicalTestspringboot.practicalTestspringboot.repository.CountryRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -15,10 +18,8 @@ public class CountryServiceImpl implements CountryService {
     @Autowired
     private CountryRepository countryRepository;
 
-    @Override
-    public Country updateCountryById(Long countryId, Country country) {
-        return null;
-    }
+
+
 
     @Override
     public Country addCountry(Country country) {
@@ -46,6 +47,23 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public void deleteCountryById(Long countryId)  {
         countryRepository.deleteById(countryId);
+    }
+
+    @Override
+    public Country updateCountry(Long countryId, Country country) {
+        Country countryDB = countryRepository.findById(countryId).get();
+
+        if(Objects.nonNull(country.getCountryName()) &&
+                !"".equalsIgnoreCase(country.getCountryName())) {
+            countryDB.setCountryName(country.getCountryName());
+        }
+
+        if(Objects.nonNull(country.getCountryDesc()) &&
+                !"".equalsIgnoreCase(country.getCountryDesc())) {
+            countryDB.setCountryDesc(country.getCountryDesc());
+        }
+
+        return countryRepository.save(countryDB);
     }
 
 
