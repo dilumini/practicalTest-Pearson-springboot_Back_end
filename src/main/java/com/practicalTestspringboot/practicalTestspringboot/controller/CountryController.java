@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/rest/v2/")
+//@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+@RequestMapping("/rest/v2")
 public class CountryController {
 
 @Autowired
@@ -21,8 +23,8 @@ public Country addCountry(@RequestBody Country country){
     return countryService.addCountry(country);
 }
 
-@GetMapping("/countries")
-public List<Country> fetchCountryList() {
+    @GetMapping("/countries")
+    public List<Country> fetchCountryList() {
         return countryService.fetchCountryList();
     }
 
