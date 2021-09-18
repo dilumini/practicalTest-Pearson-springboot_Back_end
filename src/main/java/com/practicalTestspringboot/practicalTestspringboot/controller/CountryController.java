@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController("/rest/v2/")
 public class CountryController {
 
 @Autowired
 private CountryService countryService;
+
+
 
 @PostMapping("/country")
 public Country addCountry(@RequestBody Country country){
