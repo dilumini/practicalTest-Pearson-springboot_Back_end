@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface CountryService {
 
-     Country updateCountryById(Long countryId, Country country);
-
 
     Country addCountry(Country country);
 
@@ -17,4 +15,6 @@ public interface CountryService {
     Country fetchCountryById(Long countryId) throws CountryNotFoundException;
 
     void deleteCountryById(Long countryId) throws CountryNotFoundException;
+
+    Country updateCountry(Long countryID, Country country);
 }
